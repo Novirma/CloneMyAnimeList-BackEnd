@@ -1,0 +1,71 @@
+@startuml
+
+entity Anime {
+    * anime_id : VARCHAR(30)
+    --
+    * title : VARCHAR(255)
+    synopsis : TEXT
+    type : VARCHAR(30)
+    episodes : INT
+    episodes_watching : INT
+    status_anime : VARCHAR(100)
+    status_watching : VARCHAR(100)
+    premiered : VARCHAR(100)
+    authors : VARCHAR(100)
+    source : VARCHAR(50)
+    duration : INT
+    rating : VARCHAR(100)
+     
+}
+
+entity Genres_Detail {
+    genres_detail_anime_id : VARCHAR(30)
+    genres_detail_genre_id : VARCHAR(30)
+}
+
+entity Genres {
+    * genre_id : VARCHAR(30)
+    --
+    name_genre : VARCHAR(100)
+    information : TEXT
+
+}
+
+entity Characters {
+    * character_id : VARCHAR(30)
+    --
+    name : VARCHAR(255)
+    character_anime_id : VARCHAR(30)
+    details : TEXT
+}
+
+entity Character_Voice_Actor_Details {
+    voice_actor_detail_character_id : VARCHAR(30)
+    voice_actor_detail_voice_actor_id : VARCHAR(30)
+}
+
+entity Voice_Actors {
+    * voice_actor_id : VARCHAR(30)
+    --
+    name : VARCHAR(255)
+    languages : VARCHAR(100)
+
+
+}
+
+entity Premiered {
+    * premier_id : VARCHAR(30)
+    --
+    name : VARCHAR(100)    
+}
+
+
+Anime ||--|{ Genres_Detail : Details
+Genres ||--|{ Genres_Detail : Details
+Anime ||--|{ Characters : Has
+Characters ||--|{ Character_Voice_Actor_Details : Details
+Voice_Actors ||--|{ Character_Voice_Actor_Details : Details
+Anime }|--|| Premiered : Has
+
+
+@enduml
